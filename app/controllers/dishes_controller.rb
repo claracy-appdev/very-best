@@ -3,6 +3,7 @@ class DishesController < ApplicationController
     @q = Dish.ransack(params.fetch("q", nil))
     @dishes = @q.result(:distinct => true).includes(:cuisine, :bookmarks, :fans, :specialists).page(params.fetch("page", nil)).per(10)
     @cuisine=Cuisine.all
+    @cuisine_search = Cuisine.ransack(params.fetch("q", nil))
     @venue=Venue.all
     
     render("dishes_templates/index.html.erb")
