@@ -10,6 +10,7 @@ class DishesController < ApplicationController
   end
 
   def show
+    @mybookmarks=current_user.bookmarked_venues
     @bookmark = Bookmark.new
     @dish = Dish.find(params.fetch("id"))
 
