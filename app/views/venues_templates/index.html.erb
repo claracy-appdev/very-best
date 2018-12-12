@@ -20,8 +20,8 @@
 
 
         <div class="form-group">
-      <%= f.label :bookmarks_notes_cont, "Bookmarked dish name contains" %>
-      <%= f.text_field :bookmarks_notes_cont, :class => "form-control", :placeholder => "Bookmarked dish name contains" %>
+      <%= f.label :bookmarks_notes_or_specialties_name_cont, "Bookmarked dish name contains" %>
+      <%= f.text_field :bookmarks_notes_or_specialties_name_cont, :class => "form-control", :placeholder => "Bookmarked dish name contains" %>
     </div>
 
 <div class="form-group">
@@ -49,38 +49,24 @@
   </div>
 </div>
 
+
 <div class="row">
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
         <th>Name</th>
-        <th>Address</th>
-        <th>Neighborhood</th>
-        <th>Actions</th>
       </tr>
 
-      <% @venues.each do |venue| %>
+      <% @mybookmarks.each do |bookmark| %>
       <tr>
-        <td><%= venue.name %></td>
-        <td><%= venue.address %></td>
-        <td>
-          <% if venue.neighborhood.present? %>
-            <a href="/neighborhoods/<%= venue.neighborhood.id %>">
-              <%= venue.neighborhood.name %>
-            </a>
-          <% end %>
-        </td>
-        <td>
-          <a href="/venues/<%= venue.id %>" class="btn btn-primary">Show</a>
-          <a href="/venues/<%= venue.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_venue/<%= venue.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
+        <td><%= bookmark.venue.name %></td>
+         <td><%=bookmark.dish.name %></td>
       </tr>
       <% end %>
     </table>
-    <%= paginate @venues, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
+
 
 <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
